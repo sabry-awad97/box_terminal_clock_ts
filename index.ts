@@ -1,4 +1,5 @@
 import chalk from 'chalk';
+import boxen from 'boxen';
 
 const clearScreen = () => {
   process.stdout.write('\x1Bc');
@@ -14,7 +15,8 @@ const getTime = (): string => {
 
 const render = () => {
   clearScreen();
-  console.log(chalk.greenBright(getTime()));
+  // console.log(chalk.greenBright(getTime()));
+  console.log(boxen(getTime()));
 };
 
 setInterval(render, 1000);
