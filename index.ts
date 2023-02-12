@@ -1,5 +1,6 @@
 import chalk from 'chalk';
 import boxen, { Options } from 'boxen';
+import { spinners } from './spinners.js';
 
 const options: Options = {
   padding: 1,
@@ -8,7 +9,7 @@ const options: Options = {
   borderColor: 'yellow',
 };
 
-let frames = [`⠋`, `⠙`, `⠹`, `⠸`, `⠼`, `⠴`, `⠦`, `⠧`, `⠇`, `⠏`];
+let dots = spinners.dots;
 
 let frameIndex = 0;
 
@@ -24,10 +25,10 @@ setInterval(() => {
   time += chalk.greenBright(minutes.toString().padStart(2, '0') + ':');
   time += chalk.redBright(seconds.toString().padStart(2, '0') + ' ');
   time += chalk.blueBright(day);
-  time += chalk.black(frames[frameIndex]);
+  time += chalk.black(dots.frames[frameIndex]);
 
   console.clear();
   console.log(boxen(time, options));
 
-  frameIndex = (frameIndex + 1) % frames.length;
-}, 100);
+  frameIndex = (frameIndex + 1) % dots.frames.length;
+}, dots.interval);
