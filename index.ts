@@ -17,12 +17,14 @@ setInterval(() => {
   const hours = date.getHours();
   const minutes = date.getMinutes();
   const seconds = date.getSeconds();
+  const day = date.toDateString();
 
   let time = '';
   time += chalk.yellowBright(hours.toString().padStart(2, '0') + ':');
   time += chalk.greenBright(minutes.toString().padStart(2, '0') + ':');
   time += chalk.redBright(seconds.toString().padStart(2, '0') + ' ');
-  time += chalk.blueBright(frames[frameIndex]);
+  time += chalk.blueBright(day);
+  time += chalk.black(frames[frameIndex]);
 
   console.clear();
   console.log(boxen(time, options));
