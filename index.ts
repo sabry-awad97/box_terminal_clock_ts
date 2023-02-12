@@ -1,30 +1,31 @@
 import chalk from 'chalk';
-import boxen from 'boxen';
+import boxen, { Options } from 'boxen';
 
-const getTime = (): string => {
+const options: Options = {
+  padding: 1,
+  margin: 1,
+  borderStyle: 'round',
+  borderColor: 'yellow',
+};
+
+let frames = [`⠋`, `⠙`, `⠹`, `⠸`, `⠼`, `⠴`, `⠦`, `⠧`, `⠇`, `⠏`];
+
+let frameIndex = 0;
+
+setInterval(() => {
   const date = new Date();
-  const hours = date.getHours().toString().padStart(2, '0');
-  const minutes = date.getMinutes().toString().padStart(2, '0');
-  const seconds = date.getSeconds().toString().padStart(2, '0');
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
 
   let time = '';
-  time += chalk.yellowBright(hours + ':');
-  time += chalk.greenBright(minutes + ':');
-  time += chalk.redBright(seconds);
+  time += chalk.yellowBright(hours.toString().padStart(2, '0') + ':');
+  time += chalk.greenBright(minutes.toString().padStart(2, '0') + ':');
+  time += chalk.redBright(seconds.toString().padStart(2, '0') + ' ');
+  time += chalk.blueBright(frames[frameIndex]);
 
-  return time;
-};
-
-const render = () => {
   console.clear();
-  console.log(
-    boxen(getTime(), {
-      padding: 1,
-      margin: 1,
-      borderStyle: 'round',
-      borderColor: 'yellow',
-    })
-  );
-};
+  console.log(boxen(time, options));
 
-setInterval(render, 1000);
+  frameIndex = (frameIndex + 1) % frames.length;
+}, 100);
