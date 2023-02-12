@@ -1,0 +1,16 @@
+{
+  "name": "terminal-clock",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "ts-node --transpile-only index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^18.13.0"
+  },
+  "dependencies": {
+    "chalk": "^5.2.0"
+  }
+}
